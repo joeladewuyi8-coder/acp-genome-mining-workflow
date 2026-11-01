@@ -35,37 +35,4 @@ Steps 1 to 7 are run on public web servers. Step 8 is the only step done in code
 - Boman index below 1 kcal/mol
 
 **Composite score.**
-1. Each property is scaled to 0-1 across the peptides that passed the screen (min-max scaling).
-2. The Boman and instability indices are inverted and half-life is log-transformed, so a higher value is always better.
-3. The score combines 70% membrane-activity properties (net charge, hydrophobic ratio, GRAVY, inverted Boman index) and 30% stability (inverted instability index, log half-life), with equal weight inside each group.
-
-The AntiCP score is recorded and compared with the ranking, but it is not part of the composite score, so the two measures remain independent.
-
-## Using the script
-
-Requirements: Python 3, `pandas`, `numpy`, `scipy`.
-
-```bash
-pip install pandas numpy scipy
-python scripts/rank_peptides.py example/example_input.csv ranked_output.csv
-```
-
-The input CSV needs these columns: `peptide_id`, `net_charge`, `hydrophobic_ratio`, `boman_index`, `gravy`, `instability_index`, `half_life_h`, `anticp_score`. The file in `example/` uses invented placeholder values to show the format. They are not real peptides or results.
-
-## Limitations
-
-- All outputs are predictions. Anticancer activity, toxicity and haemolysis have not been tested.
-- The 70:30 weighting is a judgement call. Because scaling depends on which peptides pass the screen, small score differences should not be over-interpreted.
-- Half-life is estimated from the N-terminal residue and says nothing about stability in blood serum.
-- Removal of the leader sequence and chemical modification of the mature peptide are not modelled.
-- Only one genome has been analysed.
-
-## Planned additions
-
-- Results and sequences, after the manuscript decision
-- Toxicity and haemolysis prediction steps
-- Application to additional genomes
-
-## Author
-
-Adewuyi Joel Adeyemi. Contact: joeladewuyi8@gmail.com
+1. Each
